@@ -28,7 +28,7 @@ class AddMeeting extends React.Component {
           location: "",
           client: "",
         });
-        this.props.history.push("/clients");
+        this.props.history.push(`/meetings`);
       })
       .catch((error) => console.log(error));
   };

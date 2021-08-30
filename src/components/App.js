@@ -7,7 +7,9 @@ import Login from "./auth/Login";
 import authService from "./services/auth-service";
 import Navbar from "./navbar/Navbar";
 import ClientList from "./clients/ClientList";
+import MeetingList from "./meetings/MeetingList";
 import ClientDetails from "./clients/ClientDetails";
+import MeetingDetails from "./meetings/MeetingDetails";
 import AddClient from "./clients/AddClient";
 import AddMeeting from "./meetings/AddMeeting";
 import EditClient from "./clients/EditClient";
@@ -18,7 +20,6 @@ class App extends React.Component {
     isLoggedIn: false,
     user: null,
     listOfClients: [],
-    // listOfMeetings: [],
   };
 
   getTheUser = (userObj, loggedIn) => {
@@ -58,6 +59,16 @@ class App extends React.Component {
         listOfClients: responseFromApi.data,
       });
     });
+  };
+
+  getMeetingsList = () => {
+    let meetings = [];
+    for (const client of this.state.listOfClients) {
+      for (const meeting of client.meetings) {
+        meetings.push(meeting);
+      }
+    }
+    return meetings;
   };
 
   render() {
@@ -109,12 +120,32 @@ class App extends React.Component {
             }}
           />
 
+          <Route
+            exact
+            path="/meetings/:id"
+            render={(routeProps) => {
+              const singleMeeting = this.getMeetingsList().find(
+                (meeting) => meeting._id === routeProps.match.params.id
+              );
+              return <ProtectedRoute user={this.state} meetingDetails={singleMeeting} component={MeetingDetails} />;
+            }}
+          />
+
           <ProtectedRoute
             exact
             path="/clients"
             user={this.state}
             listOfClients={this.state.listOfClients}
             component={ClientList}
+          />
+
+          <ProtectedRoute
+            exact
+            path="/meetings"
+            user={this.state}
+            listOfClients={this.state.listOfClients}
+            meetingsList={this.getMeetingsList()}
+            component={MeetingList}
           />
         </Switch>
       </div>

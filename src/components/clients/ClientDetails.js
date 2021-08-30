@@ -24,7 +24,7 @@ class ClientDetails extends React.Component {
             <p>{this.props.clientDetails.email}</p>
 
             {this.props.clientDetails.meetings.map((meeting) => (
-              <p>{meeting.title}</p>
+              <Link to={`/clients/${this.props.clientDetails._id}/meetings/${meeting._id}`}>{meeting.title}</Link>
             ))}
 
             <div>
