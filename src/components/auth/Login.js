@@ -27,7 +27,7 @@ class Login extends Component {
     return (
       <div>
         <h2>Login Form:</h2>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="form" onSubmit={this.handleFormSubmit}>
           <label>
             Email:
             <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />

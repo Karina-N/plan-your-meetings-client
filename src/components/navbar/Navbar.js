@@ -17,22 +17,28 @@ class Navbar extends React.Component {
     );
   }
 
-  renderLogoutLink() {
+  renderAllLinks() {
     return (
       <>
-        <Link to="/clients">Clients</Link>
-        <Link to="/">
-          <button onClick={() => this.logoutUser()}>Logout</button>
-        </Link>
+        <div>
+          <Link to="/clients/add">Add Client</Link>
+          <Link to="/meetings/add">Add Meeting</Link>
+          <Link to="/">
+            <button onClick={() => this.logoutUser()}>Logout</button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/clients">Clients</Link>
+        </div>
       </>
     );
   }
   render() {
     return (
       <nav className="nav-style">
-        {this.props.userIsLoggedIn ? "Hello " + this.props.userData.username : ""}
+        {/* {this.props.userIsLoggedIn ? "Hello " + this.props.userData.username : ""} */}
 
-        {this.props.userIsLoggedIn ? this.renderLogoutLink() : this.renderAuthLinks()}
+        {this.props.userIsLoggedIn ? this.renderAllLinks() : this.renderAuthLinks()}
       </nav>
     );
   }

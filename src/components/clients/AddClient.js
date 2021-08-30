@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-class AddClient extends Component {
+class AddClient extends React.Component {
   state = {
     name: "",
     email: "",
   };
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
+  handleFormSubmit = (e) => {
+    e.preventDefault();
     const { name, email } = this.state;
 
     axios
@@ -16,6 +17,7 @@ class AddClient extends Component {
       .then(() => {
         this.props.getData();
         this.setState({ name: "", email: "" });
+        this.props.history.push("/clients");
       })
       .catch((error) => console.log(error));
   };
@@ -31,7 +33,7 @@ class AddClient extends Component {
     return (
       <div>
         <h2>Create client</h2>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="form" onSubmit={this.handleFormSubmit}>
           <label>
             Name:
             <input type="text" name="name" value={this.state.name} onChange={(e) => this.handleChange(e)} />
@@ -42,6 +44,7 @@ class AddClient extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        <Link to={"/clients"}>Back to clients</Link>
       </div>
     );
   }
