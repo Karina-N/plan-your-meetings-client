@@ -20,6 +20,7 @@ class Navbar extends React.Component {
   renderLogoutLink() {
     return (
       <>
+        <Link to="/clients">Clients</Link>
         <Link to="/">
           <button onClick={() => this.logoutUser()}>Logout</button>
         </Link>
@@ -30,7 +31,7 @@ class Navbar extends React.Component {
     return (
       <nav className="nav-style">
         {this.props.userIsLoggedIn ? "Hello " + this.props.userData.username : ""}
-        <Link to="/clients">Clients</Link>
+
         {this.props.userIsLoggedIn ? this.renderLogoutLink() : this.renderAuthLinks()}
       </nav>
     );

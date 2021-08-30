@@ -47,13 +47,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>hello</h1>
         <Navbar userData={this.state.user} userIsLoggedIn={this.state.isLoggedIn} getUser={this.getTheUser} />
         <Switch>
           <Route exact path="/" render={(props) => <Login {...props} getUser={this.getTheUser} />} />
           <Route exact path="/signup" render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
 
-          <ProtectedRoute exact path="/clients" user={this.state.user} component={ClientList} />
+          <ProtectedRoute exact path="/clients" user={this.state} component={ClientList} />
         </Switch>
       </div>
     );

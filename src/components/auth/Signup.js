@@ -29,7 +29,7 @@ class Signup extends Component {
     return (
       <div>
         <h2>Register:</h2>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="form" onSubmit={this.handleFormSubmit}>
           <label>
             Name:
             <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
