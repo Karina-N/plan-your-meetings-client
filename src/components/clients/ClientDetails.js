@@ -23,6 +23,10 @@ class ClientDetails extends React.Component {
             <h1>{this.props.clientDetails.name}</h1>
             <p>{this.props.clientDetails.email}</p>
 
+            {this.props.clientDetails.meetings.map((meeting) => (
+              <p>{meeting.title}</p>
+            ))}
+
             <div>
               <Link to={`/clients/${this.props.clientDetails._id}/edit`}>Edit Client</Link>
               <button onClick={this.deleteClient}>Delete client</button>

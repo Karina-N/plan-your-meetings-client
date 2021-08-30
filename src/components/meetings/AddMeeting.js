@@ -13,6 +13,24 @@ class AddMeeting extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     const { date, title, location, client } = this.state;
+    console.log("NEW STATE", this.state);
+    axios
+      .post(
+        `http://localhost:5000/api/clients/${client}/meetings`,
+        { date, title, location },
+        { withCredentials: true }
+      )
+      .then(() => {
+        this.props.getData();
+        this.setState({
+          date: "",
+          title: "",
+          location: "",
+          client: "",
+        });
+        this.props.history.push("/clients");
+      })
+      .catch((error) => console.log(error));
   };
 
   handleSelection = (e) => {
@@ -29,15 +47,16 @@ class AddMeeting extends React.Component {
   };
 
   render() {
-    console.log(this.props.userData.listOfClients);
     return (
       <div>
         <h2>Create meeting</h2>
-        <form key={this.state.title} className="form" onSubmit={this.handleFormSubmit}>
-          <select onChange={(e) => this.handleSelection(e)}>
-            <option></option>
+        <form className="form" onSubmit={this.handleFormSubmit}>
+          <select defaultValue={"DEFAULT"} name="client" onChange={(e) => this.handleSelection(e)}>
+            <option value="DEFAULT" disabled>
+              Select Client
+            </option>
             {this.props.userData.listOfClients.map((client) => (
-              <option name={client.name}>{client.name}</option>
+              <option value={client._id}>{client.name}</option>
             ))}
           </select>
 

@@ -18,7 +18,7 @@ class App extends React.Component {
     isLoggedIn: false,
     user: null,
     listOfClients: [],
-    listOfMeetings: [],
+    // listOfMeetings: [],
   };
 
   getTheUser = (userObj, loggedIn) => {
@@ -56,14 +56,6 @@ class App extends React.Component {
     axios.get(`http://localhost:5000/api/clients`, { withCredentials: true }).then((responseFromApi) => {
       this.setState({
         listOfClients: responseFromApi.data,
-      });
-    });
-  };
-
-  getAllMeetings = () => {
-    axios.get(`http://localhost:5000/api/meetings`, { withCredentials: true }).then((responseFromApi) => {
-      this.setState({
-        listOfMeetings: responseFromApi.data,
       });
     });
   };
