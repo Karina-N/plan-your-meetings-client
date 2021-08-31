@@ -61,8 +61,8 @@ class Navbar extends React.Component {
           </Link>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <Link className="dropdown-item" to="/">
-                View
+              <Link className="dropdown-item" to="/user">
+                Details
               </Link>
             </li>
             <li>

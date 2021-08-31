@@ -5,11 +5,20 @@ class MeetingList extends React.Component {
   renderMeetingsList = () => {
     return this.props.meetingsList.map((meeting) => {
       return (
-        <div>
-          <Link to={`/meetings/${meeting._id}`}>
-            <h3>{meeting.title}</h3>
-          </Link>
-        </div>
+        <>
+          <div className="card meeting-card link">
+            <div className="card-body">
+              <Link to={`/meetings/${meeting._id}`} className="meeting-card-link">
+                <h4 className="card-title">{meeting.date}</h4>
+              </Link>
+              <h6 className="card-subtitle mb-2 text-muted">{meeting.location}</h6>
+              <p className="card-text">{meeting.title}</p>
+              <span className="meeting-card-span">
+                <Link className="listed-item">Client contact</Link>
+              </span>
+            </div>
+          </div>
+        </>
       );
     });
   };

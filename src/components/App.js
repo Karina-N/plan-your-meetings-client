@@ -14,6 +14,7 @@ import AddClient from "./clients/AddClient";
 import AddMeeting from "./meetings/AddMeeting";
 import EditClient from "./clients/EditClient";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import UserDetails from "./user/UserDetails";
 
 class App extends React.Component {
   state = {
@@ -55,13 +56,11 @@ class App extends React.Component {
   }
 
   getAllClients = () => {
-    // if (this.state.isLoggedIn) {
     axios.get(`${process.env.REACT_APP_API_URL}/clients`, { withCredentials: true }).then((responseFromApi) => {
       this.setState({
         listOfClients: responseFromApi.data,
       });
     });
-    // }
   };
 
   getMeetingsList = () => {
@@ -75,12 +74,15 @@ class App extends React.Component {
   };
 
   render() {
+    console.log("DETAILS / LIST MEETINGS:", this.getMeetingsList());
     return (
       <div className="App">
         <Navbar userData={this.state.user} userIsLoggedIn={this.state.isLoggedIn} getUser={this.getTheUser} />
         <Switch>
           <Route exact path="/login" render={(props) => <Login {...props} getUser={this.getTheUser} />} />
           <Route exact path="/signup" render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
+
+          <ProtectedRoute exact path="/user" user={this.state} component={UserDetails} />
 
           <Route
             exact
@@ -130,7 +132,14 @@ class App extends React.Component {
               const singleMeeting = this.getMeetingsList().find(
                 (meeting) => meeting._id === routeProps.match.params.id
               );
-              return <ProtectedRoute user={this.state} meetingDetails={singleMeeting} component={MeetingDetails} />;
+              return (
+                <ProtectedRoute
+                  user={this.state}
+                  meetingDetails={singleMeeting}
+                  getData={() => this.getAllClients()}
+                  component={MeetingDetails}
+                />
+              );
             }}
           />
 

@@ -6,17 +6,24 @@ class AddClient extends React.Component {
   state = {
     name: "",
     email: "",
+    phone: "",
+    address: "",
+    description: "",
   };
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { name, email } = this.state;
+    const { name, email, phone, address, description } = this.state;
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/clients`, { name, email }, { withCredentials: true })
+      .post(
+        `${process.env.REACT_APP_API_URL}/clients`,
+        { name, email, phone, address, description },
+        { withCredentials: true }
+      )
       .then(() => {
         this.props.getData();
-        this.setState({ name: "", email: "" });
+        this.setState({ name: "", email: "", phone: "", address: "", description: "" });
         this.props.history.push("/clients");
       })
       .catch((error) => console.log(error));
@@ -33,7 +40,7 @@ class AddClient extends React.Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <h2>Create client</h2>
+          <h2>New client</h2>
           <div className="form-floating mb-3">
             <input
               type="text"

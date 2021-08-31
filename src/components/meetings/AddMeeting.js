@@ -50,7 +50,7 @@ class AddMeeting extends React.Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <h2>Create meeting</h2>
+          <h2>New meeting</h2>
 
           <select
             className="form-select form-select-lg mb-3"

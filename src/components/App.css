@@ -24,8 +24,74 @@
   color: black;
 }
 
-@media (min-width: 760px) {
+.table-header {
+  margin-left: 0.5rem;
+  margin-bottom: 30px;
+}
+
+.table-titles-column {
+  width: 16%;
+}
+.table-background {
+  font-weight: 500;
+}
+
+.details-container {
+  margin: 30px auto 0;
+  padding: 20px;
+  background-color: #e0f1ed;
+  border-radius: 7px;
+  width: 94%;
+}
+
+.buttons-row a {
+  color: white;
+  text-decoration: none;
+}
+
+.buttons-row button {
+  margin: 2rem 0.5rem 1rem;
+  border-radius: 7px;
+  font-size: 0.9rem;
+}
+
+.button-go-back {
+  padding-top: 10px;
+  margin-left: 0.5rem;
+}
+
+.table-header {
+  margin-top: 20px;
+  margin-left: 3rem;
+}
+
+.meeting-card {
+  position: relative;
+  background-color: #e0f1ed;
+  border-radius: 7px;
+  border: none;
+}
+.meeting-card-span {
+  position: absolute;
+  bottom: 2rem;
+  right: 5rem;
+}
+
+.meeting-card.link {
+  margin: 10px 0;
+}
+
+@media (min-width: 860px) {
   .App {
-    margin: 2rem 10rem;
+    width: 900px;
+    margin: 2rem auto;
+  }
+
+  .details-container {
+    margin: 30px auto 0;
+    padding: 20px;
+    background-color: #e0f1ed;
+    border-radius: 7px;
+    width: 100%;
   }
 }
