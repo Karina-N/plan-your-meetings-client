@@ -15,8 +15,8 @@ class EditClient extends React.Component {
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}`,
-        { withCredentials: true },
-        { name, email }
+        { name, email },
+        { withCredentials: true }
       )
       .then(() => {
         this.props.getData();
