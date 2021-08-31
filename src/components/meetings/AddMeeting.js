@@ -16,7 +16,7 @@ class AddMeeting extends React.Component {
     console.log("NEW STATE", this.state);
     axios
       .post(
-        `http://localhost:5000/api/clients/${client}/meetings`,
+        `${process.env.REACT_APP_API_URL}/clients/${client}/meetings`,
         { date, title, location },
         { withCredentials: true }
       )

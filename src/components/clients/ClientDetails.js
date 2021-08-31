@@ -6,7 +6,7 @@ class ClientDetails extends React.Component {
   deleteClient = () => {
     const { params } = this.props.match;
     axios
-      .delete(`http://localhost:5000/api/clients/${params.id}`, { withCredentials: true })
+      .delete(`${process.env.REACT_APP_API_URL}/clients/${params.id}`, { withCredentials: true })
       .then(() => {
         this.props.history.push("/clients");
       })

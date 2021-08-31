@@ -13,7 +13,7 @@ class AddClient extends React.Component {
     const { name, email } = this.state;
 
     axios
-      .post("http://localhost:5000/api/clients", { name, email }, { withCredentials: true })
+      .post(`${process.env.REACT_APP_API_URL}/clients`, { name, email }, { withCredentials: true })
       .then(() => {
         this.props.getData();
         this.setState({ name: "", email: "" });

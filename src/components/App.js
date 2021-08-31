@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   getAllClients = () => {
-    axios.get(`http://localhost:5000/api/clients`, { withCredentials: true }).then((responseFromApi) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/clients`, { withCredentials: true }).then((responseFromApi) => {
       this.setState({
         listOfClients: responseFromApi.data,
       });
