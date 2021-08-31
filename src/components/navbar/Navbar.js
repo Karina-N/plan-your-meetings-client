@@ -11,8 +11,16 @@ class Navbar extends React.Component {
   renderAuthLinks() {
     return (
       <>
-        <Link to="/signup">Register</Link>
-        <Link to="/">Login</Link>
+        <li className="nav-item">
+          <Link className="nav-link nav-text" aria-current="page" to="/signup">
+            Sign up
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link nav-text" to="/login">
+            Login
+          </Link>
+        </li>
       </>
     );
   }
@@ -20,27 +28,89 @@ class Navbar extends React.Component {
   renderAllLinks() {
     return (
       <>
-        <div>
-          <Link to="/clients/add">Add Client</Link>
-          <Link to="/meetings/add">Add Meeting</Link>
-          <Link to="/">
-            <button onClick={() => this.logoutUser()}>Logout</button>
+        <li className="nav-item">
+          <Link className="nav-link nav-text" aria-current="page" to="/clients/add">
+            New Client
           </Link>
-        </div>
-        <div>
-          <Link to="/clients">Clients</Link>
-          <Link to="/meetings">Meetings</Link>
-        </div>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link nav-text" to="/meetings/add">
+            New Meeting
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link nav-text" to="/clients">
+            Clients
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link nav-text" to="/meetings">
+            Meetings
+          </Link>
+        </li>
+        <li className="nav-item dropdown">
+          <Link
+            className="nav-link nav-text dropdown-toggle"
+            to="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            My Account
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <Link className="dropdown-item" to="/">
+                View
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/logout">
+                <button onClick={() => this.logoutUser()}>Logout</button>
+              </Link>
+            </li>
+          </ul>
+        </li>
       </>
     );
   }
   render() {
     return (
-      <nav className="nav-style">
-        {/* {this.props.userIsLoggedIn ? "Hello " + this.props.userData.username : ""} */}
+      <>
+        <nav className="navbar navbar-expand-lg navbar-dark navbar-bg">
+          <div className="container-fluid">
+            {this.props.userIsLoggedIn ? (
+              <Link className="navbar-brand" to="/meetings">
+                HOME
+              </Link>
+            ) : (
+              <Link className="navbar-brand" to="/login">
+                HOME
+              </Link>
+            )}
 
-        {this.props.userIsLoggedIn ? this.renderAllLinks() : this.renderAuthLinks()}
-      </nav>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+              <ul className="navbar-nav">
+                {/* {this.props.userIsLoggedIn ? "Hello " + this.props.userData.username : ""} */}
+
+                {this.props.userIsLoggedIn ? this.renderAllLinks() : this.renderAuthLinks()}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </>
     );
   }
 }

@@ -27,42 +27,79 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Register:</h2>
-        <form className="form" onSubmit={this.handleFormSubmit}>
-          <label>
-            Name:
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
-          </label>
-          <label>
-            Email:
-            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-          </label>
-          <label>
-            Phone:
-            <input type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
-          </label>
-          <label>
-            Business Field:
-            <input type="text" name="business" value={this.state.business} onChange={this.handleChange} />
-          </label>
-          <label>
-            Address:
-            <input type="text" name="address" value={this.state.address} onChange={this.handleChange} />
-          </label>
-          <label>
-            Password:
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-          </label>
+      <>
+        <form onSubmit={this.handleFormSubmit}>
+          <h2>Register:</h2>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Name</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Email</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="phone"
+              value={this.state.phone}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Phone</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="business"
+              value={this.state.business}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Business Type</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="address"
+              value={this.state.address}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Address</label>
+          </div>
+          <div className="form-floating">
+            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+            <label for="floatingPassword">Password</label>
+          </div>
 
-          <button type="submit"> Signup </button>
+          <button type="submit" className="btn btn-primary form-btn">
+            Signup
+          </button>
         </form>
 
         <p>
           Already have an account?
           <Link to={"/"}> Login</Link>
         </p>
-      </div>
+      </>
     );
   }
 }

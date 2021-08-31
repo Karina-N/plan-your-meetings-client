@@ -1,8 +1,28 @@
 .App {
   text-align: center;
+  margin: 0.5rem;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
+.navbar-bg {
+  background-color: #ec703a;
+  border-radius: 7px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.nav-text {
+  color: white !important;
+}
+
+.form-btn {
+  margin-top: 20px;
+  background-color: #ec703a;
+  border: #ec703a;
+}
+
+@media (min-width: 760px) {
+  .App {
+    text-align: center;
+    margin: 2rem 10rem;
+  }
 }
