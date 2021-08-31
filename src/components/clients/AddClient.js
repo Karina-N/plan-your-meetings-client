@@ -31,21 +31,71 @@ class AddClient extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Create client</h2>
-        <form className="form" onSubmit={this.handleFormSubmit}>
-          <label>
-            Name:
-            <input type="text" name="name" value={this.state.name} onChange={(e) => this.handleChange(e)} />
-          </label>
-          <label>
-            Email:
-            <textarea name="email" value={this.state.email} onChange={(e) => this.handleChange(e)} />
-          </label>
-          <input type="submit" value="Submit" />
+      <>
+        <form onSubmit={this.handleFormSubmit}>
+          <h2>Create client</h2>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Name*</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Email*</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="phone"
+              value={this.state.phone}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Phone</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="address"
+              value={this.state.address}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Address</label>
+          </div>
+          <div className="form-floating mb-3">
+            <textarea
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Description</label>
+          </div>
+
+          <button type="submit" className="btn btn-primary form-btn">
+            Submit
+          </button>
         </form>
         <Link to={"/clients"}>Back to clients</Link>
-      </div>
+      </>
     );
   }
 }

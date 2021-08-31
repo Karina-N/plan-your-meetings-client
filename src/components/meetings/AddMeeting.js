@@ -48,10 +48,17 @@ class AddMeeting extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Create meeting</h2>
-        <form className="form" onSubmit={this.handleFormSubmit}>
-          <select defaultValue={"DEFAULT"} name="client" onChange={(e) => this.handleSelection(e)}>
+      <>
+        <form onSubmit={this.handleFormSubmit}>
+          <h2>Create meeting</h2>
+
+          <select
+            className="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+            defaultValue={"DEFAULT"}
+            name="client"
+            onChange={(e) => this.handleSelection(e)}
+          >
             <option value="DEFAULT" disabled>
               Select Client
             </option>
@@ -60,22 +67,58 @@ class AddMeeting extends React.Component {
             ))}
           </select>
 
-          <label>
-            Date:
-            <input type="text" name="date" value={this.state.date} onChange={(e) => this.handleChange(e)} />
-          </label>
-          <label>
-            Title:
-            <input type="text" name="title" value={this.state.title} onChange={(e) => this.handleChange(e)} />
-          </label>
-          <label>
-            Location:
-            <input type="text" name="location" value={this.state.location} onChange={(e) => this.handleChange(e)} />
-          </label>
-          <input type="submit" value="Submit" />
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Date*</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Title*</label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="location"
+              value={this.state.location}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Location*</label>
+          </div>
+          <div className="form-floating mb-3">
+            <textarea
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+            <label for="floatingInput">Description</label>
+          </div>
+
+          <button type="submit" className="btn btn-primary form-btn">
+            Submit
+          </button>
         </form>
+
         <Link to={"/meetings"}>Back to clients</Link>
-      </div>
+      </>
     );
   }
 }
