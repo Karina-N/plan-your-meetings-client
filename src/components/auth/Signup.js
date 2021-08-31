@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 import authService from "../services/auth-service";
 
 class Signup extends Component {
-  state = { name: "", email: "", password: "", phone: "", business: "", address: "" };
+  state = { name: "", email: "", password: "", address: "" };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { name, email, password, phone, business, address } = this.state;
+    const { name, email, password, address } = this.state;
 
     authService
-      .signup(name, email, password, phone, business, address)
+      .signup(name, email, password, address)
       .then((createdUser) => {
-        this.setState({ name: "", email: "", password: "", phone: "", business: "", address: "" });
+        this.setState({ name: "", email: "", password: "", address: "" });
         this.props.getUser(createdUser, true);
       })
       .catch((error) => console.log(error));
@@ -52,28 +52,7 @@ class Signup extends Component {
             />
             <label htmlFor="floatingInput">Email</label>
           </div>
-          <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="phone"
-              value={this.state.phone}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="floatingInput">Phone</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="business"
-              value={this.state.business}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="floatingInput">Business Type</label>
-          </div>
+
           <div className="form-floating mb-3">
             <input
               type="text"

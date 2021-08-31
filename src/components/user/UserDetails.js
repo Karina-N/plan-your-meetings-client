@@ -3,9 +3,6 @@ import React from "react";
 
 class UserDetails extends React.Component {
   render() {
-    console.log(this.props.user);
-    console.log("DATA", this.props.userData.user);
-
     return (
       <>
         <h3 className="table-header">User Details</h3>
