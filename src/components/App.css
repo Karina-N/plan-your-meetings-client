@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   margin: 0.5rem;
 }
 
@@ -20,9 +19,13 @@
   border: #ec703a;
 }
 
+.listed-item {
+  text-decoration: none;
+  color: black;
+}
+
 @media (min-width: 760px) {
   .App {
-    text-align: center;
     margin: 2rem 10rem;
   }
 }
