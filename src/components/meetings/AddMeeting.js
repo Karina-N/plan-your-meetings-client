@@ -76,7 +76,7 @@ class AddMeeting extends React.Component {
               value={this.state.date}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Date*</label>
+            <label htmlFor="floatingInput">Date*</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -87,7 +87,7 @@ class AddMeeting extends React.Component {
               value={this.state.title}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Title*</label>
+            <label htmlFor="floatingInput">Title*</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -98,7 +98,7 @@ class AddMeeting extends React.Component {
               value={this.state.location}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Location*</label>
+            <label htmlFor="floatingInput">Location*</label>
           </div>
           <div className="form-floating mb-3">
             <textarea
@@ -109,7 +109,7 @@ class AddMeeting extends React.Component {
               value={this.state.description}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Description</label>
+            <label htmlFor="floatingInput">Description</label>
           </div>
 
           <button type="submit" className="btn btn-primary form-btn">

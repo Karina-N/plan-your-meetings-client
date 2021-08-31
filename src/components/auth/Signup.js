@@ -39,7 +39,7 @@ class Signup extends Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Name</label>
+            <label htmlFor="floatingInput">Name</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -50,7 +50,7 @@ class Signup extends Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Email</label>
+            <label htmlFor="floatingInput">Email</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -61,7 +61,7 @@ class Signup extends Component {
               value={this.state.phone}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Phone</label>
+            <label htmlFor="floatingInput">Phone</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -72,7 +72,7 @@ class Signup extends Component {
               value={this.state.business}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Business Type</label>
+            <label htmlFor="floatingInput">Business Type</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -83,7 +83,7 @@ class Signup extends Component {
               value={this.state.address}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Address</label>
+            <label htmlFor="floatingInput">Address</label>
           </div>
           <div className="form-floating">
             <input
@@ -95,7 +95,7 @@ class Signup extends Component {
               id="floatingPassword"
               placeholder="Password"
             />
-            <label for="floatingPassword">Password</label>
+            <label htmlFor="floatingPassword">Password</label>
           </div>
 
           <button type="submit" className="btn btn-primary form-btn">

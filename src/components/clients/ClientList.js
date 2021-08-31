@@ -18,6 +18,14 @@ class ClientList extends React.Component {
     });
   }
 
+  // messageForListLoading = () => {
+  //   if (this.props.listOfClients.length === 0) {
+  //     return <p>You have no clients yet</p>;
+  //   } else {
+  //     return <p>Loading clients</p>;
+  //   }
+  // };
+
   render() {
     return (
       <>

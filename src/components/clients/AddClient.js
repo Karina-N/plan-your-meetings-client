@@ -43,7 +43,7 @@ class AddClient extends React.Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Name*</label>
+            <label htmlFor="floatingInput">Name*</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -54,7 +54,7 @@ class AddClient extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Email*</label>
+            <label htmlFor="floatingInput">Email*</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -65,7 +65,7 @@ class AddClient extends React.Component {
               value={this.state.phone}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Phone</label>
+            <label htmlFor="floatingInput">Phone</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -76,7 +76,7 @@ class AddClient extends React.Component {
               value={this.state.address}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Address</label>
+            <label htmlFor="floatingInput">Address</label>
           </div>
           <div className="form-floating mb-3">
             <textarea
@@ -87,7 +87,7 @@ class AddClient extends React.Component {
               value={this.state.description}
               onChange={this.handleChange}
             />
-            <label for="floatingInput">Description</label>
+            <label htmlFor="floatingInput">Description</label>
           </div>
 
           <button type="submit" className="btn btn-primary form-btn">

@@ -29,7 +29,7 @@ class App extends React.Component {
     });
   };
 
-  fetchUser = () => {
+  fetchUserData = () => {
     if (this.state.user === null) {
       authService
         .loggedin()
@@ -38,6 +38,8 @@ class App extends React.Component {
             user: data,
             isLoggedIn: true,
           });
+
+          this.getAllClients(); // get list of clients
         })
         .catch((err) => {
           this.setState({
@@ -49,16 +51,17 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchUser();
-    this.getAllClients();
+    this.fetchUserData();
   }
 
   getAllClients = () => {
+    // if (this.state.isLoggedIn) {
     axios.get(`${process.env.REACT_APP_API_URL}/clients`, { withCredentials: true }).then((responseFromApi) => {
       this.setState({
         listOfClients: responseFromApi.data,
       });
     });
+    // }
   };
 
   getMeetingsList = () => {
