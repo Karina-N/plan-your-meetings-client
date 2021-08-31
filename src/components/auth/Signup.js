@@ -86,7 +86,15 @@ class Signup extends Component {
             <label for="floatingInput">Address</label>
           </div>
           <div className="form-floating">
-            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+            <input
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              type="password"
+              className="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+            />
             <label for="floatingPassword">Password</label>
           </div>
 
