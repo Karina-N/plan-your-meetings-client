@@ -13,6 +13,7 @@ import MeetingDetails from "./meetings/MeetingDetails";
 import AddClient from "./clients/AddClient";
 import AddMeeting from "./meetings/AddMeeting";
 import EditClient from "./clients/EditClient";
+import EditMeeting from "./meetings/EditMeeting";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import UserDetails from "./user/UserDetails";
 
@@ -95,6 +96,24 @@ class App extends React.Component {
                   clientDetails={singleClient}
                   getData={() => this.getAllClients()}
                   component={EditClient}
+                />
+              );
+            }}
+          />
+
+          <Route
+            exact
+            path="/meetings/:id/edit"
+            render={(routeProps) => {
+              const singleMeeting = this.getMeetingsList().find(
+                (meeting) => meeting._id === routeProps.match.params.id
+              );
+              return (
+                <ProtectedRoute
+                  user={this.state}
+                  meetingDetails={singleMeeting}
+                  getData={() => this.getAllClients()}
+                  component={EditMeeting}
                 />
               );
             }}

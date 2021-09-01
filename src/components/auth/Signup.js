@@ -16,6 +16,7 @@ class Signup extends Component {
       .then((createdUser) => {
         this.setState({ name: "", email: "", password: "", address: "" });
         this.props.getUser(createdUser, true);
+        this.props.history.push("/meetings");
       })
       .catch((error) => console.log(error));
   };
