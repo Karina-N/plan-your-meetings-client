@@ -65,11 +65,11 @@ class AddMeeting extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="form-container" onSubmit={this.handleFormSubmit}>
           <h2>New meeting</h2>
 
           <select
-            className="form-select form-select-lg mb-3"
+            className="form-select form-select-sm mb-3"
             aria-label=".form-select-lg example"
             defaultValue={"DEFAULT"}
             name="client"

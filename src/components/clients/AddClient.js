@@ -44,7 +44,7 @@ class AddClient extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="form-container" onSubmit={this.handleFormSubmit}>
           <h2>New client</h2>
           <div className="form-floating mb-3">
             <input

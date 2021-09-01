@@ -43,7 +43,7 @@ class EditMeeting extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="form-container" onSubmit={this.handleFormSubmit}>
           <h2>Edit Meeting</h2>
 
           <select

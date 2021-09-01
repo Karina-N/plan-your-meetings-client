@@ -1,5 +1,6 @@
 .App {
-  margin: 0.5rem;
+  margin: 0.5rem auto;
+  width: 90%;
 }
 
 .navbar-bg {
@@ -11,6 +12,12 @@
 
 .nav-text {
   color: white !important;
+}
+
+.form-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-btn {
@@ -44,15 +51,20 @@
   width: 94%;
 }
 
+.buttons-row {
+  display: flex;
+  flex-direction: column;
+}
+
 .buttons-row a {
   color: white;
   text-decoration: none;
 }
 
 .buttons-row button {
-  margin: 2rem 0.5rem 1rem;
+  margin: 1rem 0.5rem 0;
   border-radius: 7px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .button-go-back {
@@ -114,6 +126,10 @@
   font-weight: 700;
 }
 
+.meeting-date-link {
+  color: black;
+}
+
 @media (min-width: 860px) {
   .App {
     width: 900px;
@@ -126,5 +142,17 @@
     background-color: #e0f1ed;
     border-radius: 7px;
     width: 100%;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  .buttons-row {
+    flex-direction: row;
+  }
+
+  .buttons-row button {
+    margin: 2rem 0.5rem 1rem;
   }
 }
