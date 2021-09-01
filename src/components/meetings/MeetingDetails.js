@@ -20,6 +20,19 @@ class MeetingDetails extends React.Component {
       });
   };
 
+  formatDate(date) {
+    let options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    };
+    let theDate = new Date(date);
+    return theDate.toLocaleDateString("en-US", options);
+  }
+
   render() {
     return (
       <>
@@ -29,7 +42,7 @@ class MeetingDetails extends React.Component {
             <tbody>
               <tr>
                 <td className="table-titles-column">Date</td>
-                <td>{this.props.meetingDetails.date}</td>
+                <td>{this.formatDate(this.props.meetingDetails.date)}</td>
               </tr>
               <tr>
                 <td className="table-titles-column">Title</td>

@@ -2,20 +2,26 @@ import React from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 class EditMeeting extends React.Component {
   state = {
-    date: this.props.meetingDetails.date,
+    date: new Date(this.props.meetingDetails.date),
     title: this.props.meetingDetails.title,
     location: this.props.meetingDetails.location,
     description: this.props.meetingDetails.description,
   };
 
+  setMeetingDate = (newDate) => {
+    this.setState({
+      date: newDate,
+    });
+  };
+
   handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting");
     const { date, title, location, description } = this.state;
-    console.log(this.state);
-
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}/meetings/${this.props.meetingDetails._id}`,
@@ -23,6 +29,7 @@ class EditMeeting extends React.Component {
         { withCredentials: true }
       )
       .then(() => {
+        this.props.getData();
         this.props.history.push(`/meetings/${this.props.meetingDetails._id}`);
       })
       .catch((error) => console.log(error));
@@ -47,20 +54,21 @@ class EditMeeting extends React.Component {
             onChange={(e) => this.handleSelection(e)}
           >
             <option value="DEFAULT">{this.props.clientDetails.name}</option>
+
             {this.props.userData.listOfClients.map((client) => (
               <option value={client._id}>{client.name}</option>
             ))}
           </select>
 
           <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="date"
-              value={this.state.date}
-              onChange={this.handleInputChange}
+            <DatePicker
+              selected={this.state.date}
+              onChange={(date) => this.setMeetingDate(date)}
+              showTimeSelect
+              // minTime={setHours(setMinutes(new Date(), 0), 17)}
+              dateFormat="MMMM d, yyyy h:mm aa"
             />
+
             <label htmlFor="floatingInput">Date*</label>
           </div>
           <div className="form-floating mb-3">

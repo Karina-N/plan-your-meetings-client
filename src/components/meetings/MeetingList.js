@@ -8,14 +8,14 @@ class MeetingList extends React.Component {
         <>
           <div className="card meeting-card link">
             <div key={meeting._id} className="card-body">
-              <Link to={`/meetings/${meeting._id}`} className="meeting-card-link">
-                <h4 className="card-title">{meeting.date}</h4>
+              <Link className="meeting-date-link" to={`/meetings/${meeting._id}`}>
+                <h4 className="card-title meeting-date ">{this.formatDate(meeting.date)}</h4>
               </Link>
               <h6 className="card-subtitle mb-2 text-muted">{meeting.location}</h6>
               <p className="card-text">{meeting.title}</p>
               <span className="meeting-card-span">
                 <Link to={`/clients/${meeting.clientId}`} className="listed-item">
-                  {this.getClientName(meeting)}
+                  {this.getClientDetails(meeting)}
                 </Link>
               </span>
             </div>
@@ -25,11 +25,30 @@ class MeetingList extends React.Component {
     });
   };
 
-  getClientName(meeting) {
+  getClientDetails(meeting) {
     let clientObj = this.props.listOfClients.find((client) => {
       return client._id === meeting.clientId;
     });
-    return clientObj.name;
+    return (
+      <div>
+        <p>{clientObj.name}</p>
+        <p>{clientObj.phone}</p>
+        <p>{clientObj.email}</p>
+      </div>
+    );
+  }
+
+  formatDate(date) {
+    let options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    };
+    let theDate = new Date(date);
+    return theDate.toLocaleDateString("en-US", options);
   }
 
   render() {

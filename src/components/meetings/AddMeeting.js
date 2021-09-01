@@ -3,18 +3,28 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 class AddMeeting extends React.Component {
   state = {
-    date: "",
+    date: new Date(),
     title: "",
     location: "",
     description: "",
     client: "",
   };
 
+  setMeetingDate = (newDate) => {
+    this.setState({
+      date: newDate,
+    });
+  };
+
   handleFormSubmit = (e) => {
     e.preventDefault();
     const { date, title, location, description, client } = this.state;
+
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/clients/${client}/meetings`,
@@ -24,7 +34,7 @@ class AddMeeting extends React.Component {
       .then(() => {
         this.props.getData();
         this.setState({
-          date: "",
+          date: new Date(),
           title: "",
           location: "",
           description: "",
@@ -74,15 +84,14 @@ class AddMeeting extends React.Component {
           </select>
 
           <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
+            <span htmlFor="floatingInput">Date*</span>
+            <DatePicker
+              selected={this.state.date}
+              onChange={(date) => this.setMeetingDate(date)}
+              showTimeSelect
+              // minTime={setHours(setMinutes(new Date(), 0), 17)}
+              dateFormat="MMMM d, yyyy h:mm aa"
             />
-            <label htmlFor="floatingInput">Date*</label>
           </div>
           <div className="form-floating mb-3">
             <input

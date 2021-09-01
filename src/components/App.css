@@ -79,6 +79,7 @@
 
 .meeting-card.link {
   margin: 10px 0;
+  text-decoration: none;
 }
 
 .description-row {
@@ -100,6 +101,13 @@
   border: none !important;
   border-bottom: 1px solid #ccc !important;
 }
+
+.meeting-date {
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 @media (min-width: 860px) {
   .App {
     width: 900px;
