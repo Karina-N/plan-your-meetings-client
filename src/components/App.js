@@ -108,7 +108,15 @@ class App extends React.Component {
               const singleMeeting = this.getMeetingsList().find(
                 (meeting) => meeting._id === routeProps.match.params.id
               );
-              return <ProtectedRoute user={this.state} meetingDetails={singleMeeting} component={EditMeeting} />;
+              const singleClient = this.state.listOfClients.find((client) => client._id === singleMeeting.clientId);
+              return (
+                <ProtectedRoute
+                  user={this.state}
+                  meetingDetails={singleMeeting}
+                  clientDetails={singleClient}
+                  component={EditMeeting}
+                />
+              );
             }}
           />
 
