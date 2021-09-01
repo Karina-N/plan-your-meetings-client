@@ -20,64 +20,65 @@ class ClientDetails extends React.Component {
   renderClientDetails = () => {
     return (
       <>
-        <h3 className="table-header">Client Details</h3>
-        <div className="details-container">
-          <table className="table table-borderless table-background">
-            <tbody>
-              <tr>
-                <td className="table-titles-column">Name</td>
-                <td>{this.props.clientDetails.name}</td>
-              </tr>
-              <tr>
-                <td className="table-titles-column">Email</td>
-                <td>{this.props.clientDetails.email}</td>
-              </tr>
-              <tr>
-                <td className="table-titles-column">Phone</td>
-                <td>{this.props.clientDetails.phone}</td>
-              </tr>
-              <tr>
-                <td className="table-titles-column">Addresss</td>
-                <td>{this.props.clientDetails.address}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="description-row">
-            <h6>Description</h6>
-            <ReactQuill
-              className="description-content"
-              value={this.props.clientDetails.description}
-              readOnly={true}
-              theme={"bubble"}
-            />
+        <h3 className="table-header-client-details">Client Details</h3>
+        <div className="client-details-page">
+          <div className="details-container client">
+            <table className="table table-borderless table-background">
+              <tbody>
+                <tr>
+                  <td className="table-titles-column">Name</td>
+                  <td>{this.props.clientDetails.name}</td>
+                </tr>
+                <tr>
+                  <td className="table-titles-column">Email</td>
+                  <td>{this.props.clientDetails.email}</td>
+                </tr>
+                <tr>
+                  <td className="table-titles-column">Phone</td>
+                  <td>{this.props.clientDetails.phone}</td>
+                </tr>
+                <tr>
+                  <td className="table-titles-column">Addresss</td>
+                  <td>{this.props.clientDetails.address}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="description-row">
+              <h6>Description</h6>
+              <ReactQuill
+                className="description-content"
+                value={this.props.clientDetails.description}
+                readOnly={true}
+                theme={"bubble"}
+              />
+            </div>
+
+            <div className="buttons-row">
+              <button type="button" className="btn btn-primary">
+                <Link to={"/meetings/add"}>Add Meeting</Link>
+              </button>
+              <button type="button" className="btn btn-primary">
+                <Link to={`/clients/${this.props.clientDetails._id}/edit`}>Edit Client</Link>
+              </button>
+              <button type="button" className="btn btn-primary" onClick={this.deleteClient}>
+                Delete client
+              </button>
+            </div>
+            <Link to={"/clients"} className="button-go-back">
+              Back to clients
+            </Link>
           </div>
 
-          <div className="buttons-row">
-            <button type="button" className="btn btn-primary">
-              <Link to={"/meetings/add"}>Add Meeting</Link>
-            </button>
-            <button type="button" className="btn btn-primary">
-              <Link to={`/clients/${this.props.clientDetails._id}/edit`}>Edit Client</Link>
-            </button>
-            <button type="button" className="btn btn-primary" onClick={this.deleteClient}>
-              Delete client
-            </button>
-          </div>
-          <Link to={"/clients"} className="button-go-back">
-            Back to clients
-          </Link>
+          {this.props.clientDetails.meetings.length > 0 && this.renderMeetingDetails()}
         </div>
-
-        {this.props.clientDetails.meetings.length > 0 && this.renderMeetingDetails()}
       </>
     );
   };
 
   renderMeetingDetails = () => {
     return (
-      <>
-        <h3 className="table-header">Meetings</h3>
-        {this.props.clientDetails.meetings.map((meeting) => (
+      <div className="client-page-meetings-section">
+        {this.props.sortMeetingsArray(this.props.clientDetails.meetings, "date").map((meeting) => (
           <div className="card meeting-card link">
             <div className="card-body">
               <Link to={`/meetings/${meeting._id}`} className="meeting-date-link">
@@ -88,14 +89,13 @@ class ClientDetails extends React.Component {
             </div>
           </div>
         ))}
-      </>
+      </div>
     );
   };
 
   formatDate(date) {
     let options = {
       weekday: "long",
-      year: "numeric",
       month: "long",
       day: "numeric",
       hour: "numeric",

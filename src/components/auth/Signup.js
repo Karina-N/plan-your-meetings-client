@@ -40,7 +40,7 @@ class Signup extends Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <label htmlFor="floatingInput">Name</label>
+            <label htmlFor="floatingInput">Name*</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -51,7 +51,7 @@ class Signup extends Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
-            <label htmlFor="floatingInput">Email</label>
+            <label htmlFor="floatingInput">Email*</label>
           </div>
 
           <div className="form-floating mb-3">
@@ -75,7 +75,7 @@ class Signup extends Component {
               id="floatingPassword"
               placeholder="Password"
             />
-            <label htmlFor="floatingPassword">Password</label>
+            <label htmlFor="floatingPassword">Password*</label>
           </div>
 
           <button type="submit" className="btn btn-primary form-btn">
@@ -85,7 +85,7 @@ class Signup extends Component {
 
         <p>
           Already have an account?
-          <Link to={"/"}> Login</Link>
+          <Link to={"/login"}> Login</Link>
         </p>
       </>
     );
