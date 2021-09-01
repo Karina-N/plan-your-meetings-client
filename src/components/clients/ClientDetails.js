@@ -80,8 +80,8 @@ class ClientDetails extends React.Component {
         {this.props.clientDetails.meetings.map((meeting) => (
           <div className="card meeting-card link">
             <div className="card-body">
-              <Link to={`/meetings/${meeting._id}`} className="meeting-card-link">
-                <h4 className="card-title">{meeting.date}</h4>
+              <Link to={`/meetings/${meeting._id}`} className="meeting-date-link">
+                <h4 className="card-title meeting-date">{this.formatDate(meeting.date)}</h4>
               </Link>
               <h6 className="card-subtitle mb-2 text-muted">{meeting.location}</h6>
               <p className="card-text">{meeting.title}</p>
@@ -91,6 +91,19 @@ class ClientDetails extends React.Component {
       </>
     );
   };
+
+  formatDate(date) {
+    let options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    };
+    let theDate = new Date(date);
+    return theDate.toLocaleDateString("en-US", options);
+  }
 
   render() {
     return <>{this.props.clientDetails && this.renderClientDetails()}</>;
