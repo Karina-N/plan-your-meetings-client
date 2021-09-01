@@ -1,11 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 class ClientList extends React.Component {
-  renderClients() {
-    return this.props.listOfClients.map((client) => {
+  state = {
+    searchInput: "",
+  };
+
+  handleSearchInput = (e) => {
+    this.setState({
+      searchInput: e.target.value,
+    });
+  };
+
+  renderClients = () => {
+    const { searchInput } = this.state;
+
+    const filteredClients = this.props.listOfClients.filter((client) =>
+      client.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
+    return this.sortClientsArray(filteredClients, "name").map((client) => {
       return (
         <div key={client._id}>
-          <li className="list-group-item d-flex justify-content-between align-items-center">
+          <li className="list-group-item client-list d-flex justify-content-between align-items-center">
             <Link className="listed-item" to={`/clients/${client._id}`}>
               <h3>{client.name}</h3>
             </Link>
@@ -15,6 +31,15 @@ class ClientList extends React.Component {
           </li>
         </div>
       );
+    });
+  };
+
+  sortClientsArray(arr, key) {
+    return arr.sort((a, b) => {
+      let x = a[key].toLowerCase();
+      let y = b[key].toLowerCase();
+
+      return x < y ? -1 : x > y ? 1 : 0;
     });
   }
 
@@ -29,6 +54,14 @@ class ClientList extends React.Component {
   render() {
     return (
       <>
+        <input
+          className="form-control form-control-sm me-2 search-input"
+          type="search"
+          placeholder="Search Clients"
+          aria-label="Search"
+          onChange={(e) => this.handleSearchInput(e)}
+        />
+
         <div>
           {this.props.listOfClients.length ? (
             <ul className="list-group list-group-flush">{this.renderClients()}</ul>

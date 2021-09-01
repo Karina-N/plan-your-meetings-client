@@ -75,6 +75,15 @@ class App extends React.Component {
     return meetings;
   };
 
+  sortMeetingsArray = (arr, key) => {
+    return arr.sort((a, b) => {
+      let x = a[key].toLowerCase();
+      let y = b[key].toLowerCase();
+
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -114,6 +123,8 @@ class App extends React.Component {
                   user={this.state}
                   meetingDetails={singleMeeting}
                   clientDetails={singleClient}
+                  getData={() => this.getAllClients()}
+                  meetingsList={this.getMeetingsList()}
                   component={EditMeeting}
                 />
               );
@@ -141,7 +152,14 @@ class App extends React.Component {
             path="/clients/:id"
             render={(routeProps) => {
               const singleClient = this.state.listOfClients.find((client) => client._id === routeProps.match.params.id);
-              return <ProtectedRoute user={this.state} clientDetails={singleClient} component={ClientDetails} />;
+              return (
+                <ProtectedRoute
+                  user={this.state}
+                  clientDetails={singleClient}
+                  sortMeetingsArray={this.sortMeetingsArray}
+                  component={ClientDetails}
+                />
+              );
             }}
           />
 
@@ -159,6 +177,7 @@ class App extends React.Component {
                   meetingDetails={singleMeeting}
                   clientDetails={singleClient}
                   getData={() => this.getAllClients()}
+                  meetingsList={this.getMeetingsList()}
                   component={MeetingDetails}
                 />
               );
@@ -179,6 +198,8 @@ class App extends React.Component {
             user={this.state}
             listOfClients={this.state.listOfClients}
             meetingsList={this.getMeetingsList()}
+            getData={() => this.getAllClients()}
+            sortMeetingsArray={this.sortMeetingsArray}
             component={MeetingList}
           />
         </Switch>

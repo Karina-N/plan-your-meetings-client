@@ -75,6 +75,7 @@ class Navbar extends React.Component {
       </>
     );
   }
+
   render() {
     return (
       <>
@@ -82,11 +83,11 @@ class Navbar extends React.Component {
           <div className="container-fluid">
             {this.props.userIsLoggedIn ? (
               <Link className="navbar-brand" to="/meetings">
-                HOME
+                MTA
               </Link>
             ) : (
               <Link className="navbar-brand" to="/login">
-                HOME
+                MTA
               </Link>
             )}
 

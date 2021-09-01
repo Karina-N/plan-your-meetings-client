@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 class MeetingList extends React.Component {
   renderMeetingsList = () => {
-    return this.props.meetingsList.map((meeting) => {
+    return this.props.sortMeetingsArray(this.props.meetingsList, "date").map((meeting) => {
       return (
         <>
+          {/* <p>{this.getCurrentMonth(meeting.date)}</p> */}
           <div className="card meeting-card link">
             <div key={meeting._id} className="card-body">
               <Link className="meeting-date-link" to={`/meetings/${meeting._id}`}>
@@ -39,7 +40,6 @@ class MeetingList extends React.Component {
   formatDate(date) {
     let options = {
       weekday: "long",
-      year: "numeric",
       month: "long",
       day: "numeric",
       hour: "numeric",
@@ -48,6 +48,14 @@ class MeetingList extends React.Component {
     let theDate = new Date(date);
     return theDate.toLocaleDateString("en-US", options);
   }
+
+  // getCurrentMonth(date) {
+  //   let options = {
+  //     month: "long",
+  //   };
+  //   let theDate = new Date(date);
+  //   return theDate.toLocaleDateString("en-US", options);
+  // }
 
   render() {
     return (
