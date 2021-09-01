@@ -83,6 +83,22 @@
 
 .description-row {
   border-top: 1px solid lightgrey;
+  padding-top: 20px;
+  display: flex;
+}
+
+.description-content {
+  margin-left: 40px;
+  margin-top: -10px;
+}
+
+.quill-container {
+  border: 1px solid lightgrey;
+}
+
+.quill-container > div {
+  border: none !important;
+  border-bottom: 1px solid #ccc !important;
 }
 @media (min-width: 860px) {
   .App {

@@ -90,17 +90,6 @@ class AddClient extends React.Component {
             />
             <label htmlFor="floatingInput">Address</label>
           </div>
-          {/* <div className="form-floating mb-3">
-            <textarea
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="floatingInput">Description</label>
-          </div> */}
           <span>Description</span>
           <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
 

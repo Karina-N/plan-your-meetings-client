@@ -9,6 +9,7 @@ class ClientDetails extends React.Component {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/clients/${params.id}`, { withCredentials: true })
       .then(() => {
+        this.props.getData();
         this.props.history.push("/clients");
       })
       .catch((err) => {
@@ -39,21 +40,26 @@ class ClientDetails extends React.Component {
                 <td className="table-titles-column">Addresss</td>
                 <td>{this.props.clientDetails.address}</td>
               </tr>
-              <tr className="description-row">
-                <td className="table-titles-column">Description</td>
-                <ReactQuill value={this.props.clientDetails.description} readOnly={true} theme={"bubble"} />
-              </tr>
             </tbody>
           </table>
+          <div className="description-row">
+            <h6>Description</h6>
+            <ReactQuill
+              className="description-content"
+              value={this.props.clientDetails.description}
+              readOnly={true}
+              theme={"bubble"}
+            />
+          </div>
 
           <div className="buttons-row">
-            <button type="button" class="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               <Link to={"/meetings/add"}>Add Meeting</Link>
             </button>
-            <button type="button" class="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               <Link to={`/clients/${this.props.clientDetails._id}/edit`}>Edit Client</Link>
             </button>
-            <button type="button" class="btn btn-primary" onClick={this.deleteClient}>
+            <button type="button" className="btn btn-primary" onClick={this.deleteClient}>
               Delete client
             </button>
           </div>
@@ -62,6 +68,14 @@ class ClientDetails extends React.Component {
           </Link>
         </div>
 
+        {this.props.clientDetails.meetings.length > 0 && this.renderMeetingDetails()}
+      </>
+    );
+  };
+
+  renderMeetingDetails = () => {
+    return (
+      <>
         <h3 className="table-header">Meetings</h3>
         {this.props.clientDetails.meetings.map((meeting) => (
           <div className="card meeting-card link">
