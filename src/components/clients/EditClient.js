@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import ReactQuill from "react-quill";
 
 class EditClient extends React.Component {
   state = {
@@ -23,7 +24,7 @@ class EditClient extends React.Component {
       )
       .then(() => {
         this.props.getData();
-        this.props.history.push("/clients");
+        this.props.history.push(`/clients/${this.props.clientDetails._id}`);
       })
       .catch((error) => console.log(error));
   };
@@ -31,6 +32,10 @@ class EditClient extends React.Component {
   handleInputChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  };
+
+  handleDescriptionChange = (value) => {
+    this.setState({ description: value });
   };
 
   render() {
@@ -82,20 +87,11 @@ class EditClient extends React.Component {
             />
             <label htmlFor="floatingInput">Address</label>
           </div>
-          <div className="form-floating mb-3">
-            <textarea
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-            />
-            <label htmlFor="floatingInput">Description</label>
-          </div>
+          <span>Description</span>
+          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
 
           <button type="submit" className="btn btn-primary form-btn">
-            Submit
+            Save
           </button>
         </form>
       </>

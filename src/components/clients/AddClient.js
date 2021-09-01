@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 class AddClient extends React.Component {
   state = {
@@ -34,6 +35,10 @@ class AddClient extends React.Component {
     this.setState({
       [name]: value,
     });
+  };
+
+  handleDescriptionChange = (value) => {
+    this.setState({ description: value });
   };
 
   render() {
@@ -85,7 +90,7 @@ class AddClient extends React.Component {
             />
             <label htmlFor="floatingInput">Address</label>
           </div>
-          <div className="form-floating mb-3">
+          {/* <div className="form-floating mb-3">
             <textarea
               type="text"
               className="form-control"
@@ -95,7 +100,9 @@ class AddClient extends React.Component {
               onChange={this.handleChange}
             />
             <label htmlFor="floatingInput">Description</label>
-          </div>
+          </div> */}
+          <span>Description</span>
+          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
 
           <button type="submit" className="btn btn-primary form-btn">
             Submit

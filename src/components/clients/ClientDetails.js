@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 class ClientDetails extends React.Component {
   deleteClient = () => {
@@ -16,7 +17,6 @@ class ClientDetails extends React.Component {
   };
 
   renderClientDetails = () => {
-    console.log("PROPS", this.props.clientDetails);
     return (
       <>
         <h3 className="table-header">Client Details</h3>
@@ -39,9 +39,9 @@ class ClientDetails extends React.Component {
                 <td className="table-titles-column">Addresss</td>
                 <td>{this.props.clientDetails.address}</td>
               </tr>
-              <tr>
+              <tr className="description-row">
                 <td className="table-titles-column">Description</td>
-                <td>{this.props.clientDetails.description}</td>
+                <ReactQuill value={this.props.clientDetails.description} readOnly={true} theme={"bubble"} />
               </tr>
             </tbody>
           </table>
