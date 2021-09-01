@@ -68,6 +68,7 @@ class App extends React.Component {
     let meetings = [];
     for (const client of this.state.listOfClients) {
       for (const meeting of client.meetings) {
+        meeting.clientId = client._id;
         meetings.push(meeting);
       }
     }
@@ -75,7 +76,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("DETAILS / LIST MEETINGS:", this.getMeetingsList());
     return (
       <div className="App">
         <Navbar userData={this.state.user} userIsLoggedIn={this.state.isLoggedIn} getUser={this.getTheUser} />
@@ -108,14 +108,7 @@ class App extends React.Component {
               const singleMeeting = this.getMeetingsList().find(
                 (meeting) => meeting._id === routeProps.match.params.id
               );
-              return (
-                <ProtectedRoute
-                  user={this.state}
-                  meetingDetails={singleMeeting}
-                  getData={() => this.getAllClients()}
-                  component={EditMeeting}
-                />
-              );
+              return <ProtectedRoute user={this.state} meetingDetails={singleMeeting} component={EditMeeting} />;
             }}
           />
 
@@ -151,10 +144,12 @@ class App extends React.Component {
               const singleMeeting = this.getMeetingsList().find(
                 (meeting) => meeting._id === routeProps.match.params.id
               );
+              const singleClient = this.state.listOfClients.find((client) => client._id === singleMeeting.clientId);
               return (
                 <ProtectedRoute
                   user={this.state}
                   meetingDetails={singleMeeting}
+                  clientDetails={singleClient}
                   getData={() => this.getAllClients()}
                   component={MeetingDetails}
                 />

@@ -1,23 +1,24 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 class AddMeeting extends React.Component {
   state = {
     date: "",
     title: "",
     location: "",
+    description: "",
     client: "",
   };
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { date, title, location, client } = this.state;
-    console.log("NEW STATE", this.state);
+    const { date, title, location, description, client } = this.state;
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/clients/${client}/meetings`,
-        { date, title, location },
+        { date, title, location, description, client },
         { withCredentials: true }
       )
       .then(() => {
@@ -26,6 +27,7 @@ class AddMeeting extends React.Component {
           date: "",
           title: "",
           location: "",
+          description: "",
           client: "",
         });
         this.props.history.push(`/meetings`);
@@ -33,7 +35,7 @@ class AddMeeting extends React.Component {
       .catch((error) => console.log(error));
   };
 
-  handleSelection = (e) => {
+  handleClientSelection = (e) => {
     this.setState({
       client: e.target.value,
     });
@@ -44,6 +46,10 @@ class AddMeeting extends React.Component {
     this.setState({
       [name]: value,
     });
+  };
+
+  handleDescriptionChange = (value) => {
+    this.setState({ description: value });
   };
 
   render() {
@@ -57,7 +63,7 @@ class AddMeeting extends React.Component {
             aria-label=".form-select-lg example"
             defaultValue={"DEFAULT"}
             name="client"
-            onChange={(e) => this.handleSelection(e)}
+            onChange={(e) => this.handleClientSelection(e)}
           >
             <option value="DEFAULT" disabled>
               Select Client
@@ -100,17 +106,8 @@ class AddMeeting extends React.Component {
             />
             <label htmlFor="floatingInput">Location*</label>
           </div>
-          <div className="form-floating mb-3">
-            <textarea
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="floatingInput">Description</label>
-          </div>
+          <span>Notes</span>
+          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
 
           <button type="submit" className="btn btn-primary form-btn">
             Submit

@@ -1,25 +1,26 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 class MeetingDetails extends React.Component {
   deleteMeeting = () => {
     const { params } = this.props.match;
 
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/clients/:clientId/meetings/${params.id}`, { withCredentials: true })
+      .delete(`${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}/meetings/${params.id}`, {
+        withCredentials: true,
+      })
       .then(() => {
-        this.props.history.push("/clients");
+        this.props.getData();
+        this.props.history.push("/meetings");
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // getClientId = () => {};
-
   render() {
-    console.log("PROPS IN MEETING", this.props.clientDetails);
     return (
       <>
         <h3 className="table-header">Meeting Details</h3>
@@ -39,23 +40,31 @@ class MeetingDetails extends React.Component {
                 <td>{this.props.meetingDetails.location}</td>
               </tr>
               <tr>
-                <td className="table-titles-column">Description</td>
-                <td>{this.props.meetingDetails.description}</td>
-              </tr>
-              <tr>
                 <td className="table-titles-column">Client</td>
-                <td>Client contact here</td>
+                <td>
+                  <Link to={`/clients/${this.props.clientDetails._id}`}>{this.props.clientDetails.name}</Link>
+                </td>
               </tr>
             </tbody>
           </table>
 
+          <div className="description-row">
+            <h6>Notes</h6>
+            <ReactQuill
+              className="description-content"
+              value={this.props.meetingDetails.description}
+              readOnly={true}
+              theme={"bubble"}
+            />
+          </div>
+
           <div className="buttons-row">
-            <button type="button" class="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               <Link to={`/meetings/${this.props.meetingDetails._id}/edit`}>Edit Meeting</Link>
             </button>
-            {/* <button type="button" class="btn btn-primary" onClick={this.deleteMeeting}>
+            <button type="button" className="btn btn-primary" onClick={this.deleteMeeting}>
               Delete Meeting
-            </button> */}
+            </button>
           </div>
           <Link to={"/meetings"} className="button-go-back">
             Back to Meetings
