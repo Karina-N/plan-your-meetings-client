@@ -13,11 +13,9 @@ class MeetingList extends React.Component {
               </Link>
               <h6 className="card-subtitle mb-2 text-muted">{meeting.location}</h6>
               <p className="card-text">{meeting.title}</p>
-              <span className="meeting-card-span">
-                <Link to={`/clients/${meeting.clientId}`} className="listed-item">
-                  {this.getClientDetails(meeting)}
-                </Link>
-              </span>
+              <Link to={`/clients/${meeting.clientId}`} className="listed-item">
+                {this.getClientDetails(meeting)}
+              </Link>
             </div>
           </div>
         </>
@@ -30,7 +28,7 @@ class MeetingList extends React.Component {
       return client._id === meeting.clientId;
     });
     return (
-      <div>
+      <div className="meeting-client-details">
         <p>{clientObj.name}</p>
         <p>{clientObj.phone}</p>
         <p>{clientObj.email}</p>

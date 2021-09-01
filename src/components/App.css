@@ -71,10 +71,16 @@
   border-radius: 7px;
   border: none;
 }
-.meeting-card-span {
+.meeting-client-details {
   position: absolute;
   bottom: 2rem;
-  right: 5rem;
+  right: 2rem;
+  width: 10rem;
+}
+
+.meeting-client-details p {
+  margin-bottom: 0;
+  font-size: 0.8rem;
 }
 
 .meeting-card.link {
