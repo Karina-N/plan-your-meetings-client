@@ -5,6 +5,7 @@ import axios from "axios";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import authService from "./services/auth-service";
+import Homepage from "./Homepage";
 import Navbar from "./navbar/Navbar";
 import ClientList from "./clients/ClientList";
 import MeetingList from "./meetings/MeetingList";
@@ -104,6 +105,7 @@ class App extends React.Component {
       <div className="App">
         <Navbar userData={this.state.user} userIsLoggedIn={this.state.isLoggedIn} resetData={this.resetData} />
         <Switch>
+          <Route exact path="/" render={(props) => <Homepage {...props} userIsLoggedIn={this.state.isLoggedIn} />} />
           <Route exact path="/login" render={(props) => <Login {...props} getUser={this.getTheUser} />} />
           <Route exact path="/signup" render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
 

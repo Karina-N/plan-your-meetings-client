@@ -77,14 +77,14 @@ class EditMeeting extends React.Component {
           </select>
 
           <div className="form-floating mb-3">
+            <label htmlFor="floatingInput">Date*</label>
             <DatePicker
+              className="datepicker-input"
               selected={this.state.date}
               onChange={(date) => this.setMeetingDate(date)}
               showTimeSelect
               dateFormat="MMMM d, yyyy h:mm aa"
             />
-
-            <label htmlFor="floatingInput">Date*</label>
           </div>
           <div className="form-floating mb-3">
             <input

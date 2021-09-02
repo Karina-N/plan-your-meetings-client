@@ -69,6 +69,7 @@
 .buttons-row {
   display: flex;
   flex-direction: column;
+  padding-bottom: 5px;
 }
 
 .buttons-row a {
@@ -195,6 +196,23 @@
 
 .hamburger-menu li a button:hover {
   font-weight: 700;
+}
+
+.homepage-welcome-div {
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.homepage-welcome {
+  color: #011ffd;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.datepicker-input {
+  width: 300px;
+  border: 1px solid #ced4da;
+  padding: 5px;
 }
 
 @media (min-width: 860px) {
