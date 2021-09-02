@@ -24,11 +24,14 @@ class ClientDetails extends React.Component {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
-          <div className="custom-ui">
+          <div className="custom-ui delete-container">
             <h1>Are you sure?</h1>
             <h3>Deleting Client: {this.props.clientDetails.name} </h3>
-            <button onClick={onClose}>Cancel</button>
+            <button className="btn btn-secondary" onClick={onClose}>
+              Cancel
+            </button>
             <button
+              className="btn btn-danger"
               onClick={() => {
                 this.deleteClient();
                 onClose();

@@ -11,7 +11,7 @@ class MeetingDetails extends React.Component {
     const { params } = this.props.match;
 
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}/meetings/${params.id}`, {
+      .delete(`${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails?._id}/meetings/${params.id}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -40,10 +40,13 @@ class MeetingDetails extends React.Component {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
-          <div className="custom-ui">
+          <div className="custom-ui delete-container">
             <h1>Are you sure?</h1>
-            <button onClick={onClose}>Cancel</button>
+            <button className="btn btn-secondary" onClick={onClose}>
+              Cancel
+            </button>
             <button
+              className="btn btn-danger"
               onClick={() => {
                 this.deleteMeeting();
                 onClose();
@@ -66,20 +69,20 @@ class MeetingDetails extends React.Component {
             <tbody>
               <tr>
                 <td className="table-titles-column">Date</td>
-                <td>{this.formatDate(this.props.meetingDetails.date)}</td>
+                <td>{this.formatDate(this.props.meetingDetails?.date)}</td>
               </tr>
               <tr>
                 <td className="table-titles-column">Title</td>
-                <td>{this.props.meetingDetails.title}</td>
+                <td>{this.props.meetingDetails?.title}</td>
               </tr>
               <tr>
                 <td className="table-titles-column">Location</td>
-                <td>{this.props.meetingDetails.location}</td>
+                <td>{this.props.meetingDetails?.location}</td>
               </tr>
               <tr>
                 <td className="table-titles-column">Client</td>
                 <td>
-                  <Link to={`/clients/${this.props.clientDetails._id}`}>{this.props.clientDetails.name}</Link>
+                  <Link to={`/clients/${this.props.clientDetails?._id}`}>{this.props.clientDetails?.name}</Link>
                 </td>
               </tr>
             </tbody>
@@ -89,7 +92,7 @@ class MeetingDetails extends React.Component {
             <h6>Notes</h6>
             <ReactQuill
               className="description-content"
-              value={this.props.meetingDetails.description}
+              value={this.props.meetingDetails?.description}
               readOnly={true}
               theme={"bubble"}
             />
@@ -97,7 +100,7 @@ class MeetingDetails extends React.Component {
 
           <div className="buttons-row">
             <button type="button" className="btn btn-primary">
-              <Link to={`/meetings/${this.props.meetingDetails._id}/edit`}>Edit Meeting</Link>
+              <Link to={`/meetings/${this.props.meetingDetails?._id}/edit`}>Edit Meeting</Link>
             </button>
             <button type="button" className="btn btn-primary" onClick={this.submitDelete}>
               Delete Meeting

@@ -10,7 +10,8 @@ class EditMeeting extends React.Component {
     date: new Date(this.props.meetingDetails.date),
     title: this.props.meetingDetails.title,
     location: this.props.meetingDetails.location,
-    description: this.props.meetingDetails.description,
+    // description: this.props.meetingDetails.description,
+    client: this.props.clientDetails.name,
     errorMessage: "",
   };
 
@@ -22,15 +23,21 @@ class EditMeeting extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { date, title, location, description } = this.state;
+    const { date, title, location, client } = this.state;
+
+    console.log("CHANGING STATE", this.state);
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}/meetings/${this.props.meetingDetails._id}`,
-        { date, title, location, description },
+        { date, title, location, client },
         { withCredentials: true }
       )
       .then(() => {
         this.props.getData();
+
+        console.log("singleMeeting >>>>  ", this.props.meetingDetails);
+        console.log("singleClient >>>>  ", this.props.clientDetails);
+
         this.props.history.push(`/meetings/${this.props.meetingDetails._id}`);
       })
       .catch((error) => {
@@ -45,6 +52,10 @@ class EditMeeting extends React.Component {
     this.setState({ [name]: value });
   };
 
+  handleDescriptionChange = (value) => {
+    this.setState({ description: value });
+  };
+
   render() {
     return (
       <>
@@ -56,7 +67,7 @@ class EditMeeting extends React.Component {
             aria-label=".form-select-lg example"
             defaultValue={"DEFAULT"}
             name="client"
-            onChange={(e) => this.handleSelection(e)}
+            onChange={this.handleInputChange}
           >
             <option value="DEFAULT">{this.props.clientDetails.name}</option>
 
@@ -100,8 +111,8 @@ class EditMeeting extends React.Component {
             />
             <label htmlFor="floatingInput">Location*</label>
           </div>
-          <span>Notes</span>
-          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
+          {/* <span>Notes</span>
+          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} /> */}
 
           <button type="submit" className="btn btn-primary form-btn">
             Save
