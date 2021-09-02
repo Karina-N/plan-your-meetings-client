@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import authService from "../services/auth-service";
 
 class Signup extends Component {
-  state = { name: "", email: "", password: "", address: "" };
+  state = { name: "", email: "", password: "", address: "", errorMessage: "" };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -16,9 +16,18 @@ class Signup extends Component {
       .then((createdUser) => {
         this.setState({ name: "", email: "", password: "", address: "" });
         this.props.getUser(createdUser, true);
-        this.props.history.push("/meetings");
+        this.props.history.push("/clients");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          name: "",
+          email: "",
+          password: "",
+          address: "",
+          errorMessage: error.response.data.errorMessage,
+        });
+      });
   };
 
   handleChange = (event) => {
@@ -30,10 +39,14 @@ class Signup extends Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <h2>Register:</h2>
+          <h2>Sign up:</h2>
+
+          {this.state.errorMessage && <h3 className="error"> {this.state.errorMessage} </h3>}
+
           <div className="form-floating mb-3">
             <input
               type="text"
+              required
               className="form-control"
               id="floatingInput"
               name="name"
@@ -45,6 +58,7 @@ class Signup extends Component {
           <div className="form-floating mb-3">
             <input
               type="email"
+              required
               className="form-control"
               id="floatingInput"
               name="email"
@@ -67,13 +81,14 @@ class Signup extends Component {
           </div>
           <div className="form-floating">
             <input
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
               type="password"
               className="form-control"
               id="floatingPassword"
               placeholder="Password"
+              name="password"
+              required
+              value={this.state.password}
+              onChange={this.handleChange}
             />
             <label htmlFor="floatingPassword">Password*</label>
           </div>

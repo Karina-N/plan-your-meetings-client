@@ -40,8 +40,6 @@ class App extends React.Component {
             user: data,
             isLoggedIn: true,
           });
-
-          this.getAllClients(); // get list of clients
         })
         .catch((err) => {
           this.setState({
@@ -50,6 +48,8 @@ class App extends React.Component {
           });
         });
     }
+
+    this.getAllClients(); // get list of clients
   };
 
   componentDidMount() {
@@ -72,6 +72,7 @@ class App extends React.Component {
         meetings.push(meeting);
       }
     }
+
     return meetings;
   };
 
@@ -157,6 +158,7 @@ class App extends React.Component {
                   user={this.state}
                   clientDetails={singleClient}
                   sortMeetingsArray={this.sortMeetingsArray}
+                  getData={() => this.getAllClients()}
                   component={ClientDetails}
                 />
               );
@@ -167,10 +169,10 @@ class App extends React.Component {
             exact
             path="/meetings/:id"
             render={(routeProps) => {
-              const singleMeeting = this.getMeetingsList().find(
-                (meeting) => meeting._id === routeProps.match.params.id
-              );
-              const singleClient = this.state.listOfClients.find((client) => client._id === singleMeeting.clientId);
+              const meetings = this.getMeetingsList();
+
+              const singleMeeting = meetings.find((meeting) => meeting._id === routeProps.match.params.id);
+              const singleClient = this.state.listOfClients.find((client) => client._id === singleMeeting?.clientId);
               return (
                 <ProtectedRoute
                   user={this.state}
