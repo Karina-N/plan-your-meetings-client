@@ -27,11 +27,11 @@ class ClientDetails extends React.Component {
           <div className="custom-ui delete-container">
             <h1>Are you sure?</h1>
             <h3>Deleting Client: {this.props.clientDetails.name} </h3>
-            <button className="btn btn-secondary" onClick={onClose}>
+            <button className="btn btn-secondary form-btn" onClick={onClose}>
               Cancel
             </button>
             <button
-              className="btn btn-danger"
+              className="btn btn-danger delete-btn-confirm"
               onClick={() => {
                 this.deleteClient();
                 onClose();
@@ -82,14 +82,14 @@ class ClientDetails extends React.Component {
             </div>
 
             <div className="buttons-row">
-              <button type="button" className="btn btn-primary">
+              <button type="button" className="btn btn-primary form-btn">
                 <Link to={"/meetings/add"}>Add Meeting</Link>
               </button>
-              <button type="button" className="btn btn-primary">
+              <button type="button" className="btn btn-primary form-btn">
                 <Link to={`/clients/${this.props.clientDetails._id}/edit`}>Edit Client</Link>
               </button>
 
-              <button type="button" className="btn btn-primary" onClick={this.submitDelete}>
+              <button type="button" className="btn btn-primary form-btn" onClick={this.submitDelete}>
                 Delete Client
               </button>
             </div>

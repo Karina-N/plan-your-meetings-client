@@ -23,10 +23,10 @@ class ClientList extends React.Component {
         <div key={client._id}>
           <li className="list-group-item client-list d-flex justify-content-between align-items-center">
             <Link className="listed-item" to={`/clients/${client._id}`}>
-              <h3>{client.name}</h3>
+              <h3 className="client-name-listed">{client.name}</h3>
             </Link>
             {client.meetings.length > 0 && (
-              <span className="badge bg-primary rounded-pill">{client.meetings.length}</span>
+              <span className="badge bg-primary rounded-pill meeting-count">{client.meetings.length}</span>
             )}
           </li>
         </div>
