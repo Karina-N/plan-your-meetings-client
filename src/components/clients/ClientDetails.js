@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
 
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+
 class ClientDetails extends React.Component {
   deleteClient = () => {
     const { params } = this.props.match;
@@ -15,6 +18,28 @@ class ClientDetails extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  submitDelete = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <h1>Are you sure?</h1>
+            <h3>Deleting Client: {this.props.clientDetails.name} </h3>
+            <button onClick={onClose}>Cancel</button>
+            <button
+              onClick={() => {
+                this.deleteClient();
+                onClose();
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        );
+      },
+    });
   };
 
   renderClientDetails = () => {
@@ -60,8 +85,9 @@ class ClientDetails extends React.Component {
               <button type="button" className="btn btn-primary">
                 <Link to={`/clients/${this.props.clientDetails._id}/edit`}>Edit Client</Link>
               </button>
-              <button type="button" className="btn btn-primary" onClick={this.deleteClient}>
-                Delete client
+
+              <button type="button" className="btn btn-primary" onClick={this.submitDelete}>
+                Delete Client
               </button>
             </div>
             <Link to={"/clients"} className="button-go-back">

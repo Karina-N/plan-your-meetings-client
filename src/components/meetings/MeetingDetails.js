@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
 
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+
 class MeetingDetails extends React.Component {
   deleteMeeting = () => {
     const { params } = this.props.match;
@@ -32,6 +35,27 @@ class MeetingDetails extends React.Component {
     let theDate = new Date(date);
     return theDate.toLocaleDateString("en-US", options);
   }
+
+  submitDelete = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <h1>Are you sure?</h1>
+            <button onClick={onClose}>Cancel</button>
+            <button
+              onClick={() => {
+                this.deleteMeeting();
+                onClose();
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        );
+      },
+    });
+  };
 
   render() {
     return (
@@ -75,7 +99,7 @@ class MeetingDetails extends React.Component {
             <button type="button" className="btn btn-primary">
               <Link to={`/meetings/${this.props.meetingDetails._id}/edit`}>Edit Meeting</Link>
             </button>
-            <button type="button" className="btn btn-primary" onClick={this.deleteMeeting}>
+            <button type="button" className="btn btn-primary" onClick={this.submitDelete}>
               Delete Meeting
             </button>
           </div>
