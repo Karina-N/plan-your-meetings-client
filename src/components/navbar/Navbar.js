@@ -4,7 +4,7 @@ import authService from "../services/auth-service";
 class Navbar extends React.Component {
   logoutUser = () => {
     authService.logout().then(() => {
-      this.props.getUser(null, false);
+      this.props.resetData();
     });
   };
 

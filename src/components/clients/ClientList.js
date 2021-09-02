@@ -43,14 +43,6 @@ class ClientList extends React.Component {
     });
   }
 
-  // messageForListLoading = () => {
-  //   if (this.props.listOfClients.length === 0) {
-  //     return <p>You have no clients yet</p>;
-  //   } else {
-  //     return <p>Loading clients</p>;
-  //   }
-  // };
-
   render() {
     return (
       <>
@@ -65,8 +57,10 @@ class ClientList extends React.Component {
         <div>
           {this.props.listOfClients.length ? (
             <ul className="list-group list-group-flush">{this.renderClients()}</ul>
-          ) : (
+          ) : this.props.loadingClients ? (
             "Loading clients"
+          ) : (
+            <Link to="/clients/add">create new client</Link>
           )}
         </div>
       </>

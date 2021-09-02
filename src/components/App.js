@@ -22,6 +22,15 @@ class App extends React.Component {
     isLoggedIn: false,
     user: null,
     listOfClients: [],
+    loadingClients: false,
+  };
+
+  resetData = () => {
+    this.setState({
+      isLoggedIn: false,
+      user: null,
+      loadingClients: [],
+    });
   };
 
   getTheUser = (userObj, loggedIn) => {
@@ -29,6 +38,7 @@ class App extends React.Component {
       user: userObj,
       isLoggedIn: loggedIn,
     });
+    this.getAllClients(); // get list of clients
   };
 
   fetchUserData = () => {
@@ -57,9 +67,13 @@ class App extends React.Component {
   }
 
   getAllClients = () => {
+    this.setState({
+      loadingClients: true,
+    });
     axios.get(`${process.env.REACT_APP_API_URL}/clients`, { withCredentials: true }).then((responseFromApi) => {
       this.setState({
         listOfClients: responseFromApi.data,
+        loadingClients: false,
       });
     });
   };
@@ -88,7 +102,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar userData={this.state.user} userIsLoggedIn={this.state.isLoggedIn} getUser={this.getTheUser} />
+        <Navbar userData={this.state.user} userIsLoggedIn={this.state.isLoggedIn} resetData={this.resetData} />
         <Switch>
           <Route exact path="/login" render={(props) => <Login {...props} getUser={this.getTheUser} />} />
           <Route exact path="/signup" render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
@@ -185,12 +199,12 @@ class App extends React.Component {
               );
             }}
           />
-
           <ProtectedRoute
             exact
             path="/clients"
             user={this.state}
             listOfClients={this.state.listOfClients}
+            loadingClients={this.state.loadingClients}
             component={ClientList}
           />
 
