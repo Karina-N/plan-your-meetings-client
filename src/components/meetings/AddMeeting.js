@@ -13,6 +13,7 @@ class AddMeeting extends React.Component {
     location: "",
     description: "",
     client: "",
+    errorMessage: "",
   };
 
   setMeetingDate = (newDate) => {
@@ -42,7 +43,11 @@ class AddMeeting extends React.Component {
         });
         this.props.history.push(`/meetings`);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        this.setState({
+          errorMessage: "Please fill all required fields",
+        });
+      });
   };
 
   handleClientSelection = (e) => {
@@ -68,6 +73,8 @@ class AddMeeting extends React.Component {
         <form className="form-container" onSubmit={this.handleFormSubmit}>
           <h2>New meeting</h2>
 
+          {this.state.errorMessage && <h3 className="error"> {this.state.errorMessage} </h3>}
+
           <select
             className="form-select form-select-sm mb-3"
             aria-label=".form-select-lg example"
@@ -76,7 +83,7 @@ class AddMeeting extends React.Component {
             onChange={(e) => this.handleClientSelection(e)}
           >
             <option value="DEFAULT" disabled>
-              Select Client
+              Select Client*
             </option>
             {this.props.userData.listOfClients.map((client) => (
               <option value={client._id}>{client.name}</option>
@@ -96,6 +103,7 @@ class AddMeeting extends React.Component {
           <div className="form-floating mb-3">
             <input
               type="text"
+              required
               className="form-control"
               id="floatingInput"
               name="title"
@@ -107,6 +115,7 @@ class AddMeeting extends React.Component {
           <div className="form-floating mb-3">
             <input
               type="text"
+              required
               className="form-control"
               id="floatingInput"
               name="location"

@@ -46,6 +46,7 @@ class EditClient extends React.Component {
           <div className="form-floating mb-3">
             <input
               type="text"
+              required
               className="form-control"
               id="floatingInput"
               name="name"
@@ -57,6 +58,7 @@ class EditClient extends React.Component {
           <div className="form-floating mb-3">
             <input
               type="email"
+              required
               className="form-control"
               id="floatingInput"
               name="email"

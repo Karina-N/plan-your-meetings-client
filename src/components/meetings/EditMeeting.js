@@ -11,6 +11,7 @@ class EditMeeting extends React.Component {
     title: this.props.meetingDetails.title,
     location: this.props.meetingDetails.location,
     description: this.props.meetingDetails.description,
+    errorMessage: "",
   };
 
   setMeetingDate = (newDate) => {
@@ -32,7 +33,11 @@ class EditMeeting extends React.Component {
         this.props.getData();
         this.props.history.push(`/meetings/${this.props.meetingDetails._id}`);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        this.setState({
+          errorMessage: "Please fill all required fields",
+        });
+      });
   };
 
   handleInputChange = (e) => {
@@ -74,6 +79,7 @@ class EditMeeting extends React.Component {
           <div className="form-floating mb-3">
             <input
               type="text"
+              required
               className="form-control"
               id="floatingInput"
               name="title"
@@ -85,6 +91,7 @@ class EditMeeting extends React.Component {
           <div className="form-floating mb-3">
             <input
               type="text"
+              required
               className="form-control"
               id="floatingInput"
               name="location"
