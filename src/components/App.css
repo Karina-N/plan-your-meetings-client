@@ -4,7 +4,7 @@
 }
 
 .navbar-bg {
-  background-color: #ec703a;
+  background-color: #ff2281;
   border-radius: 7px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -20,10 +20,19 @@
   margin-right: auto;
 }
 
+.form-container h2 {
+  margin-bottom: 20px;
+}
+
 .form-btn {
   margin-top: 20px;
-  background-color: #ec703a;
-  border: #ec703a;
+  background-color: #ff2281;
+  border: #ff2281;
+}
+
+.form-btn:hover {
+  background-color: #011ffd;
+  border: #011ffd;
 }
 
 .listed-item {
@@ -52,7 +61,7 @@
 .details-container {
   margin: 30px auto 0;
   padding: 20px;
-  background-color: #e0f1ed;
+  background-color: #e6f6fe;
   border-radius: 7px;
   width: 94%;
 }
@@ -78,8 +87,12 @@
   margin-left: 0.5rem;
 }
 
+.submit-button {
+  margin-bottom: 10px;
+}
+
 .meeting-card {
-  background-color: #e0f1ed;
+  background-color: #e6f6fe;
   border-radius: 7px;
   border: none;
 }
@@ -102,6 +115,10 @@
   text-decoration: none;
 }
 
+.hamburger-menu {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
 .description-row {
   border-top: 1px solid lightgrey;
   padding-top: 20px;
@@ -111,6 +128,7 @@
 
 .quill-container {
   border: 1px solid lightgrey;
+  border-radius: 7px;
 }
 
 .quill-container > div {
@@ -142,6 +160,43 @@
   margin-right: 10px;
 }
 
+.client-name-listed:hover {
+  color: #011ffd;
+}
+
+.delete-btn-confirm {
+  background-color: #ff2281 !important;
+}
+
+.hamburger-menu {
+  background-color: #ff2281;
+  outline: white;
+}
+
+.hamburger-menu li a {
+  color: white;
+  margin-left: 15px;
+  background-color: transparent;
+}
+
+.hamburger-menu li a:hover {
+  color: white;
+  font-weight: 700;
+  background-color: #ff2281 !important;
+  width: 100px;
+}
+
+.hamburger-menu li a button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  margin-left: -5px;
+}
+
+.hamburger-menu li a button:hover {
+  font-weight: 700;
+}
+
 @media (min-width: 860px) {
   .App {
     width: 900px;
@@ -155,6 +210,7 @@
 
   .form-container {
     width: 96%;
+    margin-bottom: 20px;
   }
 
   .buttons-row {

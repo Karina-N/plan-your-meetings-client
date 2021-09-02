@@ -59,7 +59,7 @@ class Navbar extends React.Component {
           >
             My Account
           </Link>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <ul className="dropdown-menu hamburger-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
               <Link className="dropdown-item" to="/user">
                 Details
@@ -92,7 +92,7 @@ class Navbar extends React.Component {
             )}
 
             <button
-              className="navbar-toggler"
+              className="navbar-toggler hamburger-menu"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -104,8 +104,6 @@ class Navbar extends React.Component {
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
               <ul className="navbar-nav">
-                {/* {this.props.userIsLoggedIn ? "Hello " + this.props.userData.username : ""} */}
-
                 {this.props.userIsLoggedIn ? this.renderAllLinks() : this.renderAuthLinks()}
               </ul>
             </div>
