@@ -34,11 +34,7 @@ class EditMeeting extends React.Component {
       )
       .then(() => {
         this.props.getData();
-
-        console.log("singleMeeting >>>>  ", this.props.meetingDetails);
-        console.log("singleClient >>>>  ", this.props.clientDetails);
-
-        this.props.history.push(`/meetings/${this.props.meetingDetails._id}`);
+        this.props.history.push(`/clients/${this.props.clientDetails._id}`);
       })
       .catch((error) => {
         this.setState({
@@ -81,7 +77,6 @@ class EditMeeting extends React.Component {
               selected={this.state.date}
               onChange={(date) => this.setMeetingDate(date)}
               showTimeSelect
-              // minTime={setHours(setMinutes(new Date(), 0), 17)}
               dateFormat="MMMM d, yyyy h:mm aa"
             />
 

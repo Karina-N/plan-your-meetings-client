@@ -96,7 +96,6 @@ class AddMeeting extends React.Component {
               selected={this.state.date}
               onChange={(date) => this.setMeetingDate(date)}
               showTimeSelect
-              // minTime={setHours(setMinutes(new Date(), 0), 17)}
               dateFormat="MMMM d, yyyy h:mm aa"
             />
           </div>
