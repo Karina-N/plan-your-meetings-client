@@ -124,9 +124,13 @@ class AddMeeting extends React.Component {
             <label htmlFor="floatingInput">Location*</label>
           </div>
           <span>Notes</span>
-          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
+          <ReactQuill
+            className="quill-container"
+            value={this.state.description}
+            onChange={this.handleDescriptionChange}
+          />
 
-          <button type="submit" className="btn btn-primary form-btn">
+          <button type="submit" className="btn btn-primary form-btn ">
             Submit
           </button>
         </form>

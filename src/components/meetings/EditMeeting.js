@@ -24,8 +24,6 @@ class EditMeeting extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     const { date, title, location, description, client } = this.state;
-
-    console.log("CHANGING STATE", this.state);
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}/meetings/${this.props.meetingDetails._id}`,
@@ -41,6 +39,12 @@ class EditMeeting extends React.Component {
           errorMessage: "Please fill all required fields",
         });
       });
+  };
+
+  handleClientSelection = (e) => {
+    this.setState({
+      client: e.target.value,
+    });
   };
 
   handleInputChange = (e) => {
@@ -63,7 +67,7 @@ class EditMeeting extends React.Component {
             aria-label=".form-select-lg example"
             defaultValue={"DEFAULT"}
             name="client"
-            onChange={this.handleInputChange}
+            onChange={(e) => this.handleClientSelection(e)}
           >
             <option value="DEFAULT">{this.props.clientDetails.name}</option>
 
@@ -107,7 +111,11 @@ class EditMeeting extends React.Component {
             <label htmlFor="floatingInput">Location*</label>
           </div>
           <span>Notes</span>
-          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
+          <ReactQuill
+            className="quill-container"
+            value={this.state.description}
+            onChange={this.handleDescriptionChange}
+          />
 
           <button type="submit" className="btn btn-primary form-btn">
             Save

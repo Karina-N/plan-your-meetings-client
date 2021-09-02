@@ -93,7 +93,11 @@ class AddClient extends React.Component {
             <label htmlFor="floatingInput">Address</label>
           </div>
           <span>Description</span>
-          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
+          <ReactQuill
+            className="quill-container"
+            value={this.state.description}
+            onChange={this.handleDescriptionChange}
+          />
 
           <button type="submit" className="btn btn-primary form-btn">
             Submit
