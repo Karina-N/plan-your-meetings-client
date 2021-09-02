@@ -10,7 +10,7 @@ class EditMeeting extends React.Component {
     date: new Date(this.props.meetingDetails.date),
     title: this.props.meetingDetails.title,
     location: this.props.meetingDetails.location,
-    // description: this.props.meetingDetails.description,
+    description: this.props.meetingDetails.description,
     client: this.props.clientDetails.name,
     errorMessage: "",
   };
@@ -23,13 +23,13 @@ class EditMeeting extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { date, title, location, client } = this.state;
+    const { date, title, location, description, client } = this.state;
 
     console.log("CHANGING STATE", this.state);
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/clients/${this.props.clientDetails._id}/meetings/${this.props.meetingDetails._id}`,
-        { date, title, location, client },
+        { date, title, location, description, client },
         { withCredentials: true }
       )
       .then(() => {
@@ -111,8 +111,8 @@ class EditMeeting extends React.Component {
             />
             <label htmlFor="floatingInput">Location*</label>
           </div>
-          {/* <span>Notes</span>
-          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} /> */}
+          <span>Notes</span>
+          <ReactQuill value={this.state.description} onChange={this.handleDescriptionChange} />
 
           <button type="submit" className="btn btn-primary form-btn">
             Save
