@@ -103,7 +103,9 @@ class AddClient extends React.Component {
             Submit
           </button>
         </form>
-        <Link to={"/clients"}>Back to clients</Link>
+        <Link to={"/clients"} className="button-go-back">
+          Back to clients
+        </Link>
       </>
     );
   }

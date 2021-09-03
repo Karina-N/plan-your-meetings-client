@@ -218,6 +218,7 @@ class App extends React.Component {
             meetingsList={this.getMeetingsList()}
             getData={() => this.getAllClients()}
             sortMeetingsArray={this.sortMeetingsArray}
+            loadingClients={this.state.loadingClients}
             component={MeetingList}
           />
         </Switch>

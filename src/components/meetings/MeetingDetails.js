@@ -46,7 +46,7 @@ class MeetingDetails extends React.Component {
               Cancel
             </button>
             <button
-              className="btn btn-danger"
+              className="btn btn-danger delete-btn-confirm"
               onClick={() => {
                 this.deleteMeeting();
                 onClose();
@@ -60,11 +60,26 @@ class MeetingDetails extends React.Component {
     });
   };
 
+  renderContactIcon() {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-person-lines-fill"
+        viewBox="0 0 16 16"
+      >
+        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+      </svg>
+    );
+  }
+
   render() {
     return (
       <>
         <h3 className="table-header">Meeting Details</h3>
-        <div className="details-container">
+        <div className="details-container meeting">
           <table className="table table-borderless table-background">
             <tbody>
               <tr>
@@ -82,7 +97,10 @@ class MeetingDetails extends React.Component {
               <tr>
                 <td className="table-titles-column">Client</td>
                 <td>
-                  <Link to={`/clients/${this.props.clientDetails?._id}`}>{this.props.clientDetails?.name}</Link>
+                  <Link className="link-to-client" to={`/clients/${this.props.clientDetails?._id}`}>
+                    <span>{this.renderContactIcon()}</span>
+                    {this.props.clientDetails?.name}
+                  </Link>
                 </td>
               </tr>
             </tbody>
@@ -99,10 +117,10 @@ class MeetingDetails extends React.Component {
           </div>
 
           <div className="buttons-row">
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-primary form-btn">
               <Link to={`/meetings/${this.props.meetingDetails?._id}/edit`}>Edit Meeting</Link>
             </button>
-            <button type="button" className="btn btn-primary" onClick={this.submitDelete}>
+            <button type="button" className="btn btn-primary form-btn" onClick={this.submitDelete}>
               Delete Meeting
             </button>
           </div>

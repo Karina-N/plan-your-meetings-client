@@ -6,7 +6,7 @@ class UserDetails extends React.Component {
     return (
       <>
         <h3 className="table-header">User Details</h3>
-        <div className="details-container">
+        <div className="details-container user">
           <table className="table table-borderless table-background">
             <tbody>
               <tr>

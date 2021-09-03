@@ -136,7 +136,9 @@ class AddMeeting extends React.Component {
           </button>
         </form>
 
-        <Link to={"/meetings"}>Back to clients</Link>
+        <Link to={"/meetings"} className="button-go-back">
+          Back to clients
+        </Link>
       </>
     );
   }
