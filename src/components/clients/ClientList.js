@@ -43,6 +43,16 @@ class ClientList extends React.Component {
     });
   }
 
+  renderLinkFirstClient() {
+    return (
+      <div className="add-first-client-div">
+        <Link to="/clients/add" className="add-first-client">
+          <h2>Add your first client</h2>
+        </Link>
+      </div>
+    );
+  }
+
   render() {
     return (
       <>
@@ -60,7 +70,7 @@ class ClientList extends React.Component {
           ) : this.props.loadingClients ? (
             "Loading clients"
           ) : (
-            <Link to="/clients/add">create new client</Link>
+            this.renderLinkFirstClient()
           )}
         </div>
       </>
