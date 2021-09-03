@@ -210,6 +210,9 @@
   border: none;
   margin-top: 20px;
 }
+.delete-btn-confirm.meeting {
+  margin-top: 0;
+}
 
 .hamburger-menu {
   background-color: black;
