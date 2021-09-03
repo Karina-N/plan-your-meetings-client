@@ -16,7 +16,7 @@ class MeetingDetails extends React.Component {
       })
       .then(() => {
         this.props.getData();
-        this.props.history.push("/meetings");
+        this.props.history.push(`/clients/${this.props.clientDetails?._id}`);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +46,7 @@ class MeetingDetails extends React.Component {
               Cancel
             </button>
             <button
-              className="btn btn-danger delete-btn-confirm"
+              className="btn btn-danger delete-btn-confirm meeting"
               onClick={() => {
                 this.deleteMeeting();
                 onClose();
