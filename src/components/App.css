@@ -207,6 +207,8 @@
 
 .delete-btn-confirm {
   background-color: #5fff00 !important;
+  border: none;
+  margin-top: 20px;
 }
 
 .hamburger-menu {
@@ -288,7 +290,7 @@
 }
 
 .card-text {
-  margin-left: 10px;
+  margin-left: 36px;
 }
 
 @media (min-width: 860px) {

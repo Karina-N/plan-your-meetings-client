@@ -14,7 +14,7 @@ class Login extends Component {
       .then((response) => {
         this.setState({ email: "", password: "" });
         this.props.getUser(response, true);
-        this.props.history.push("/meetings"); // need to get the updated list of clients (eg. calling the method getAllClients() of App)
+        this.props.history.push("/clients"); // need to get the updated list of clients (eg. calling the method getAllClients() of App)
       })
       .catch((error) => {
         this.setState({ errorMessage: "Your email or password is incorrect" });
