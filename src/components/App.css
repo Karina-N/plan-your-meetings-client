@@ -4,7 +4,7 @@
 }
 
 .navbar-bg {
-  background-color: black;
+  background-color: #333;
   border-radius: 7px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -26,8 +26,8 @@
 
 .form-btn {
   margin-top: 20px;
-  background-color: black;
-  border: black;
+  background-color: #333;
+  border: #333;
 }
 
 .form-btn:hover,
@@ -215,7 +215,7 @@
 }
 
 .hamburger-menu {
-  background-color: black;
+  background-color: #333;
   outline: white;
 }
 
@@ -228,7 +228,7 @@
 .hamburger-menu li a:hover {
   color: white;
   font-weight: 700;
-  background-color: black !important;
+  background-color: #333 !important;
   width: 100px;
 }
 
@@ -343,7 +343,7 @@
   }
 
   .details-container.client {
-    background-color: white;
+    background-color: #fff;
   }
 
   .table-header-client-details {
