@@ -37,6 +37,11 @@
   border: #5fff00;
   color: black;
 }
+.form-btn a:hover,
+.form-btn a:active,
+.form-btn a:focus {
+  color: black;
+}
 
 .listed-item {
   text-decoration: none;
