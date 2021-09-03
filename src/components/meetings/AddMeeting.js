@@ -41,7 +41,7 @@ class AddMeeting extends React.Component {
           description: "",
           client: "",
         });
-        this.props.history.push(`/meetings`);
+        this.props.history.push(`/clients/${client}`);
       })
       .catch((error) => {
         this.setState({
