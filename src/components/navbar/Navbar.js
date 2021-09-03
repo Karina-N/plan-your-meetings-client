@@ -7,7 +7,7 @@ class Navbar extends React.Component {
       this.props.resetData();
     });
   };
-
+  s;
   renderAuthLinks() {
     return (
       <>
@@ -66,7 +66,7 @@ class Navbar extends React.Component {
               </Link>
             </li>
             <li>
-              <Link className="dropdown-item" to="/logout">
+              <Link className="dropdown-item" to="/login">
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
             </li>
