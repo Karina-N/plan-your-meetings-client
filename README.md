@@ -9,5 +9,6 @@ Technologies used:
 HTML | CSS | JavaScript | React.js | Bootstrap
 Node.js | Express | MongoDB | Mongoose | Axios
 
-![MTA](https://user-images.githubusercontent.com/67471786/132460239-3a9e7cb4-c8d6-4a30-9998-1486058f16d4.png)
+<img width="631" alt="MTA" src="https://user-images.githubusercontent.com/67471786/132460319-4228dd0e-d6a8-46a7-a4bd-725e381dfb39.png">
+
 
